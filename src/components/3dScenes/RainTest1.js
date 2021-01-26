@@ -3,7 +3,7 @@ import React, { Component } from "react";
 //
 import * as THREE from "three";
 //
-// import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 // import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 // import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
@@ -31,7 +31,7 @@ class TropicalVoid extends Component {
   componentWillUnmount() {
     window.removeEventListener("resize", this.handleWindowResize);
     window.cancelAnimationFrame(this.requestID);
-    this.controls.dispose();
+    // this.controls.dispose();
   }
   /*
 
@@ -84,6 +84,7 @@ class TropicalVoid extends Component {
 
     //
     //
+    // this.controls = new OrbitControls(this.camera, this.eleModelBlOne);
     //
     this.renderer = new THREE.WebGL1Renderer();
     this.renderer.setSize(width, height);
@@ -92,14 +93,51 @@ class TropicalVoid extends Component {
 
   /*
 
+ 
 
 
-
-
+It is basically the iterator through your loaded object. 
+You can pass the function to the traverse() function which 
+will be called for every child of the object being traversed. 
+If you call traverse() on scene. you traverse through 
+the complete scene graph.
 
   */
   // 2
   addCustomSceneObjects = () => {
+    //
+    let loader = new THREE.TextureLoader();
+    loader.load("./images/img-cloud2.png", (texture) => {
+      this.meshyAnimationVar = texture.scene;
+      //
+      //
+
+      this.cloudGeo = new THREE.PlaneBufferGeometry(500, 500);
+      this.cloudMaterial = new THREE.MeshLambertMaterial({
+        map: texture,
+        transparent: true,
+      });
+      //
+      //
+      // if (model.material) model.material.metalness = 0.08;
+      for (let p = 0; p < 25; p++) {
+        this.cloud = new THREE.Mesh(this.cloudGeo, this.cloudMaterial);
+        this.cloud.position.set(
+          Math.random() * 800 - 400,
+          500,
+          Math.random() * 500 - 450
+        );
+        //
+        this.cloud.rotation.x = 1.16;
+        this.cloud.rotation.y = -0.12;
+        this.cloud.rotation.z = Math.random() * 360;
+        this.cloud.material.opacity = 0.6;
+        this.scene.add(this.cloud);
+      }
+
+      this.scene.add(texture.scene);
+    });
+
     // ------------------
     //      LIGHTS
     // ------------------

@@ -4,7 +4,9 @@
 <br>
 <br>
 
-### Start with the basic Boilerplate
+# Basic Boilerplate
+
+<br>
 
 ```javascript
 import React, { Component } from "react";
@@ -91,7 +93,7 @@ export default RainTest1;
 
 # 🍨
 
-### START BUILDING THE SCENE
+## BUILDING THE SCENE
 
 ```javascript
 import React, { Component } from "react";
@@ -270,3 +272,74 @@ export default TropicalVoid;
 ##### How it should look like:
 
 [<img src="./src/images/black_scene.jpg"/>]()
+
+<br>
+<br>
+<br>
+
+# 🍨 CLOUDS
+
+### After the scene is ready, start by adding some clouds
+
+#### But before...
+
+- Lets get rid of the Orbitscontrol so to have a better view of the process
+
+[<img src="./src/images/with-and-without-orbitControls.gif"/>]()
+
+<br>
+<br>
+<br>
+
+# 👾
+
+#### SET UP THE **TEXTURE loader**
+
+<br>
+
+```javascript
+let loader = new THREE.TextureLoader();
+//1 adding the callback function
+loader.load("./images/img-cloud2.png", (texture) => {
+  //
+  //2 Here below: we will create a geometry for each cloud
+  //   500 units plane square
+
+  this.cloudGeo = new THREE.PlaneBufferGeometry(500, 500);
+  //3   Then create a Material and a map it with  a texture: (texture) => {
+  this.cloudMaterial = new THREE.MeshLambertMaterial({
+    map: texture,
+    transparent: true,
+  });
+  //
+  //
+  //
+  // 4 Create a Loop, to randomly add each cloud to the SCENE
+  for (let p = 0; p < 25; p++) {
+    //
+    // 5 First create a cloud OBJ from the geometry and material (above: in step2)
+    this.cloud = new THREE.Mesh(this.cloudGeo, this.cloudMaterial);
+    // 6 Then randomly SET the position
+    this.cloud.position.set(
+      Math.random() * 800 - 400,
+      500,
+      Math.random() * 500 - 450
+    );
+    //
+    // 7 I will set the cloud rotation angle to FACE the camera
+    //
+    this.cloud.rotation.x = 1.16;
+    this.cloud.rotation.y = -0.12;
+    //
+    // 8 also add random around the Z-axis
+    this.cloud.rotation.z = Math.random() * 360;
+    // 9 add opacity
+    this.cloud.material.opacity = 0.6;
+    //
+    //
+    this.scene.add(this.cloud);
+  }
+
+  this.scene.add(texture.scene);
+});
+```
