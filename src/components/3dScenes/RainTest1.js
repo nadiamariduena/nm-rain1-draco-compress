@@ -119,7 +119,7 @@ the complete scene graph.
     //   FLASH Lights
     // ---------------
     // add a bluelight 0x062d89 or red ff0000 or purple b600c7
-    this.flash = new THREE.PointLight(0xb600c7, 30, 500, 1.7);
+    this.flash = new THREE.PointLight(0xb600c7, 30, 500, 1.7); //1.7 intensity .. 0 is really strong
     //  You will position it BEHIND a cloud
     this.flash.position.set(200, 300, 100);
     // and added it to the scene
@@ -195,6 +195,21 @@ the complete scene graph.
 
     // this.cube.rotation.x += 0.01;
     // this.cube.rotation.y += 0.01;
+
+    //
+    // -----------------------
+    // ANIMATE the FlashLight
+    // -----------------------
+    if (Math.random() > 0.93 || this.flash.power > 100) {
+      if (this.flash.power < 100)
+        this.flash.position.set(
+          Math.random() * 400,
+          300 + Math.random() * 200,
+          100
+        );
+      this.flash.power = 50 + Math.random() * 500;
+    }
+    // -----------------------
 
     this.renderer.render(this.scene, this.camera);
     this.requestID = window.requestAnimationFrame(this.startAnimationLoop);

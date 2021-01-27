@@ -1,10 +1,8 @@
-### FIRST RAIN ATTEMPT
+# FIRST RAIN ATTEMPT 🌈
 
 <br>
-<br>
-<br>
 
-# Basic Boilerplate
+## Basic Boilerplate 🍦
 
 <br>
 
@@ -21,54 +19,20 @@ const style = {
 //
 class RainTest1 extends Component {
   componentDidMount() {}
-  /*
-
-
-
-
-
-
-  */
+  //
   componentWillUnmount() {}
-  /*
-
-
-
-
-
-
-  */
+  //
   // 1
   sceneSetup = () => {};
-
-  /*
-
-
-
-
-
-
-  */
+  //
   // 2
   addCustomSceneObjects = () => {};
-  /*
-
-
-
-
-
-
-  */
+  //
   // 3
   startAnimationLoop = () => {};
-  /*
-
-
-
-
-
-
-  */
+  //
+  //
+  //
   render() {
     return (
       <div className="scene-oblivion">
@@ -86,14 +50,12 @@ export default RainTest1;
 ```
 
 <br>
-<br>
-<br>
 
-# 🍨
+# BUILDING THE SCENE 🌈
 
-## BUILDING THE SCENE
+#### But Before what is Frustum?
 
-#### But what is Frustum?
+[<img src="./src/images/indignant-girl-meme.gif" style="width:120px;"/>]()
 
 - In geometry, a frustum (plural: frusta or frustums) is the portion of a solid (normally
   a cone or pyramid) that lies between one or two parallel
@@ -119,21 +81,20 @@ export default RainTest1;
 > and slant height **l**
 
 <br>
+<br>
+
+# 🚀 🚀 🚀
+
+<br>
 
 ```javascript
 import React, { Component } from "react";
-//  ADD THIS inside the SCENE SETUP
-//
 import * as THREE from "three";
 //
 //
-//
-
 const style = {
   height: 600, // we can control scene size by setting container dimensions
 };
-//
-
 //
 //
 class TropicalVoid extends Component {
@@ -152,14 +113,8 @@ class TropicalVoid extends Component {
     window.cancelAnimationFrame(this.requestID);
     this.controls.dispose();
   }
-  /*
-
-
-
-
-
-
-  */
+  //
+  //
   // 1
   sceneSetup = () => {
     const width = this.eleModelBlOne.clientWidth;
@@ -206,14 +161,6 @@ class TropicalVoid extends Component {
     this.eleModelBlOne.appendChild(this.renderer.domElement); // mount using React ref
   };
 
-  /*
-
-
-
-
-
-
-  */
   // 2
   addCustomSceneObjects = () => {
     // ------------------
@@ -227,38 +174,21 @@ class TropicalVoid extends Component {
     this.scene.add(ambient);
     //
     //
-    //
-    //
-    //
     // b This light will represent a MOONlight in the sky
     const directionalLight = new THREE.DirectionalLight(0xffeedd); //0x  then the hex color ,ex: ffffff for white
     directionalLight.position.set(0, 0, 0); // it means that it stands totally at the center
     this.scene.add(directionalLight);
     //
   };
-  /*
 
-
-
-
-
-
-  */
   // 3
   startAnimationLoop = () => {};
-  /*
-
-
-
-
-
-
-  */
+  //
+  //
   handleWindowResize = () => {
     const width = this.eleModelBlOne.clientWidth;
     const height = this.eleModelBlOne.clientHeight;
 
-    //
     //
     // updated renderer
     this.renderer.setSize(width, height);
@@ -270,14 +200,8 @@ class TropicalVoid extends Component {
     // That is the Three.js optimization: you can group multiple camera changes into a block with only one
     this.camera.updateProjectionMatrix();
   };
-  /*
-
-
-
-
-
-
-  */
+  //
+  //
   render() {
     return (
       <div className="scene-oblivion">
@@ -379,7 +303,7 @@ loader.load("./images/img-cloud2.png", (texture) => {
 <hr>
 <br>
 
-# 🍦🍦🍦
+# 🚀 🚀 🚀
 
 <br>
 
@@ -443,6 +367,10 @@ startAnimationLoop = () => {
 
 # 🚀 🚀 🚀
 
+### Lets make a [Purple Rain](https://www.youtube.com/watch?v=TvnYmWpD_T8)
+
+[<img src="./src/images/purplerain.gif"/>]()
+
 <br>
 
 ### FLASHLIGHTS
@@ -461,7 +389,7 @@ startAnimationLoop = () => {
 // ---------------
 // add a bluelight 0x062d89 or red ff0000 or purple b600c7
 //
-this.flash = new THREE.PointLight(0xb600c7, 30, 500, 1.7);
+this.flash = new THREE.PointLight(0xb600c7, 30, 500, 1.7); //1.7 intensity
 //  You will position it BEHIND a cloud
 this.flash.position.set(200, 300, 100);
 // and added it to the scene
@@ -479,3 +407,12 @@ this.scene.add(this.flash);
 ### 🔥🔥🔥
 
 ## ANIMATE the FlashLight
+
+
+- Add a Logic to random a Position and Light intensity
+
+- You can change these number in the **If** condition , to **adjust frequency** and lightning intensity
+
+```javascript
+
+```
