@@ -367,13 +367,9 @@ startAnimationLoop = () => {
 
 # 🚀 🚀 🚀
 
-### Lets make a [Purple Rain](https://www.youtube.com/watch?v=TvnYmWpD_T8)
-
-[<img src="./src/images/purplerain.gif"/>]()
-
 <br>
 
-### FLASHLIGHTS
+# FLASHLIGHTS
 
 - 1 Set up a **point Light with Blue Color**
 
@@ -408,11 +404,97 @@ this.scene.add(this.flash);
 
 ## ANIMATE the FlashLight
 
-
 - Add a Logic to random a Position and Light intensity
 
 - You can change these number in the **If** condition , to **adjust frequency** and lightning intensity
 
 ```javascript
-
+// -----------------------
+// ANIMATE the FlashLight
+// -----------------------
+if (Math.random() > 0.93 || this.flash.power > 100) {
+  if (this.flash.power < 100)
+    this.flash.position.set(
+      Math.random() * 400,
+      300 + Math.random() * 200,
+      100
+    );
+  this.flash.power = 50 + Math.random() * 500;
+}
+// -----------------------
 ```
+
+<br>
+<br>
+<br>
+
+# 🦄
+
+### Lets make a [Purple Rain](https://www.youtube.com/watch?v=TvnYmWpD_T8)
+
+[<img src="./src/images/purplerain.gif"/>]()
+
+<br>
+
+# ADDING THE RAIN
+
+- This is going to be different from adding a cloud, **We are not going to create a separated Object for each Raindrop** , that would be very inefficient and you migh get a framerate drop instead.
+
+```javascript
+//
+//
+// ------------------
+// a     RAIN
+// ------------------
+//
+// let rain,
+//   rainGeo,
+//   rainCount = 15000;
+//
+//
+
+this.rainCount = 15000;
+
+//
+// ------------------
+// b     RAIN
+// ------------------
+//
+this.rainGeo = new THREE.Geometry();
+for (let i = 0; i < this.rainCount; i++) {
+  this.rainDrop = new THREE.Vector3(
+    Math.random() * 400 - 200,
+    Math.random() * 500 - 250,
+    Math.random() * 400 - 200
+  );
+  this.rainGeo.vertices.push(this.rainDrop);
+}
+//
+// ------------------
+// c     CREATE Rain Material
+// ------------------
+//
+this.rainMaterial = new THREE.PointsMaterial({
+  color: 0xaaaaaa,
+  size: 0.1,
+  transparent: true,
+});
+//
+// ------------------
+// d     CREATE Rain Object
+// ------------------
+//
+this.rainMaterial = new THREE.PointsMaterial({
+  color: 0xaaaaaa,
+  size: 0.1,
+  transparent: true,
+});
+//
+//
+this.rain = new THREE.Points(this.rainGeo, this.rainMaterial);
+this.scene.add(this.rain);
+//
+//
+```
+
+[<img src="./src/images/rain_particles_noanimation.jpg"/>]()

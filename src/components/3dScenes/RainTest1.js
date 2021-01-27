@@ -97,8 +97,8 @@ the complete scene graph.
     //-------- 1* cloudParticles
     this.cloudParticles = [];
     //---------
-    //
 
+    //
     // ------------------
     //      LIGHTS
     // ------------------
@@ -126,6 +126,57 @@ the complete scene graph.
     this.scene.add(this.flash);
 
     //
+    //
+    // ------------------
+    // a     RAIN
+    // ------------------
+    //
+    // let rain,
+    //   rainGeo,
+    //   rainCount = 15000;
+    //
+    //
+
+    this.rainCount = 15000;
+
+    //
+    // ------------------
+    // b     RAIN
+    // ------------------
+    //
+    this.rainGeo = new THREE.Geometry();
+    for (let i = 0; i < this.rainCount; i++) {
+      this.rainDrop = new THREE.Vector3(
+        Math.random() * 400 - 200,
+        Math.random() * 500 - 250,
+        Math.random() * 400 - 200
+      );
+      this.rainGeo.vertices.push(this.rainDrop);
+    }
+    //
+    // ------------------
+    // c     CREATE Rain Material
+    // ------------------
+    //
+    this.rainMaterial = new THREE.PointsMaterial({
+      color: 0xaaaaaa,
+      size: 0.1,
+      transparent: true,
+    });
+    //
+    // ------------------
+    // d     CREATE Rain Object
+    // ------------------
+    //
+    this.rainMaterial = new THREE.PointsMaterial({
+      color: 0xaaaaaa,
+      size: 0.1,
+      transparent: true,
+    });
+    //
+    //
+    this.rain = new THREE.Points(this.rainGeo, this.rainMaterial);
+    this.scene.add(this.rain);
     //
     //
     //
