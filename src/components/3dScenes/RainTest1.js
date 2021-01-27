@@ -7,6 +7,8 @@ const style = {
   height: 600, // we can control scene size by setting container dimensions
 };
 //
+// the cloud animation related (not the cloud alone)
+// let cloudParticles = [];
 
 //
 //
@@ -98,6 +100,9 @@ the complete scene graph.
   */
   // 2
   addCustomSceneObjects = () => {
+    this.cloudParticles = [];
+    //
+    //
     //
     let loader = new THREE.TextureLoader();
     loader.load("./images/img-cloud2.png", (texture) => {
@@ -125,6 +130,7 @@ the complete scene graph.
         this.cloud.rotation.y = -0.12;
         this.cloud.rotation.z = Math.random() * 360;
         this.cloud.material.opacity = 0.6;
+        this.cloudParticles.push(this.cloud);
         this.scene.add(this.cloud);
       }
 
@@ -157,6 +163,10 @@ the complete scene graph.
   */
   // 3
   startAnimationLoop = () => {
+    this.cloudParticles.forEach((p) => {
+      p.rotation.z -= 0.002;
+    });
+
     // this.cube.rotation.x += 0.01;
     // this.cube.rotation.y += 0.01;
 
