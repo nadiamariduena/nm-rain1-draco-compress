@@ -1,3 +1,4 @@
+```javascript
 import React, { Component } from "react";
 import * as THREE from "three";
 //
@@ -209,3 +210,4 @@ the complete scene graph.
 }
 
 export default TropicalVoid;
+```

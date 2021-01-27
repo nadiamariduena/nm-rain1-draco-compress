@@ -10,8 +10,6 @@
 
 ```javascript
 import React, { Component } from "react";
-//  ADD THIS inside the SCENE SETUP
-//
 import * as THREE from "three";
 //
 //
@@ -343,3 +341,15 @@ loader.load("./images/img-cloud2.png", (texture) => {
   this.scene.add(texture.scene);
 });
 ```
+
+<br>
+
+##### the code:
+
+[check the whole code](./src/docs/CLOUDSETUP.md)
+
+<br>
+<br>
+<br>
+<hr>
+<br>
