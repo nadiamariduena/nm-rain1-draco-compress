@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import * as THREE from "three";
 //
-// import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 const style = {
   height: 600, // we can control scene size by setting container dimensions
@@ -24,7 +24,7 @@ class TropicalVoid extends Component {
   componentWillUnmount() {
     window.removeEventListener("resize", this.handleWindowResize);
     window.cancelAnimationFrame(this.requestID);
-    // this.controls.dispose();
+    this.controls.dispose();
   }
   /*
 
@@ -79,7 +79,7 @@ class TropicalVoid extends Component {
     this.renderer.setClearColor(this.scene.fog.color);
     //
     //
-    // this.controls = new OrbitControls(this.camera, this.eleModelBlOne);
+    this.controls = new OrbitControls(this.camera, this.eleModelBlOne);
     this.renderer.setSize(width, height);
     this.eleModelBlOne.appendChild(this.renderer.domElement); // mount using React ref
   };

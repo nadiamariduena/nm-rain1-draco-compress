@@ -950,4 +950,19 @@ export default TropicalVoid;
 
 [<img src="./src/images/fog-readme.gif"/>](https://www.youtube.com/watch?v=1bkibGIG8i0&list=PLbu98QxRH81KkLTN00OXhD8Y-pRVgTCnM&index=6)
 
-#### VIDEO TUTORIAL By : RED STAPLER
+##### VIDEO TUTORIAL By : [RED STAPLER](https://www.youtube.com/channel/UCRthRrv06q1iOl86-tTKJhg)
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## UNDESIRED  🌵
+
+##### When Allowing {OrbitsControl} you can see the png img corners, I still dont know how to prevent that, as I want to add the rain to the other project i am working on.
+
+[<img src="./src/images/squared-png_undesiredEffect-when_showing_orbitsControl.gif"/>]()
