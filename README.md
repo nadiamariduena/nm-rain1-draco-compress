@@ -1,5 +1,7 @@
 # FIRST RAIN ATTEMPT 🌈
 
+##### VIDEO TUTORIAL By : [RED STAPLER](https://www.youtube.com/channel/UCRthRrv06q1iOl86-tTKJhg)
+
 <br>
 
 ## Basic Boilerplate 🍦
@@ -946,4 +948,6 @@ class TropicalVoid extends Component {
 export default TropicalVoid;
 ```
 
-[<img src="./src/images/fog-readme.gif"/>]()
+[<img src="./src/images/fog-readme.gif"/>](https://www.youtube.com/watch?v=1bkibGIG8i0&list=PLbu98QxRH81KkLTN00OXhD8Y-pRVgTCnM&index=6)
+
+#### VIDEO TUTORIAL By : RED STAPLER
