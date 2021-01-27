@@ -379,31 +379,24 @@ loader.load("./images/img-cloud2.png", (texture) => {
 <hr>
 <br>
 
-# 🍦
+# 🍦🍦🍦
 
 <br>
 
-# ANIMATING THE Scene
+## ANIMATING The Scene
 
-<br>
-
-##### Add the following on the top of the scene (just above the first function)
+#### Add the following:
 
 - **cloudParticles** This is keeping a reference to each cloud in the array
 
 ```javascript
-// let cloudParticles = [];
-// // this.cloudParticles = [];
-// //
-// // above this:
-// class TropicalVoid extends Component {
 this.cloudParticles = [];
-//  I Inlcuded the cloudParticles inside the addCustomSceneObjects = () => { because on top of the file it dodnt work
+//  I Included the cloudParticles inside the addCustomSceneObjects = () => { ,because on top of the file (near the imports) it didn't work.
 ```
 
 <br>
 
-### Now add the cloudParticles to the function animation
+### Now add the cloudParticles to the Animation Function 🔥
 
 ```javascript
 // this.cloud.material.opacity = 0.6;
@@ -413,24 +406,19 @@ this.cloudParticles.push(this.cloud);
 
 <br>
 
-#### THEN in the animate function, use the Array to rotate them one by one
+### THEN in the animate function, use the Array to rotate them one by one
 
 ```javascript
 startAnimationLoop = () => {
   this.cloudParticles.forEach((p) => {
     //   Here  ...
   });
-
-  //
-  //
-  //
-
-  this.renderer.render(this.scene, this.camera);
-  this.requestID = window.requestAnimationFrame(this.startAnimationLoop);
 };
 ```
 
 <br>
+
+### ADD the requestAnimationFrame and the Renderer
 
 ```javascript
 startAnimationLoop = () => {
@@ -438,16 +426,14 @@ startAnimationLoop = () => {
     p.rotation.z -= 0.002;
   });
 
-  // this.cube.rotation.x += 0.01;
-  // this.cube.rotation.y += 0.01;
-  //
-  //
   //
   // You need the following 2 lines to launch the animation
   this.renderer.render(this.scene, this.camera);
   this.requestID = window.requestAnimationFrame(this.startAnimationLoop);
 };
 ```
+
+##### RESULT
 
 [<img src="./src/images/rotation-animation1_basic-setup.gif"/>]()
 
@@ -467,11 +453,14 @@ startAnimationLoop = () => {
 
 - 3 And **add it to the Scene**
 
+<br>
+
 ```javascript
 // ----------------
 //   FLASH Lights
 // ---------------
 // add a bluelight 0x062d89 or red ff0000 or purple b600c7
+//
 this.flash = new THREE.PointLight(0xb600c7, 30, 500, 1.7);
 //  You will position it BEHIND a cloud
 this.flash.position.set(200, 300, 100);
