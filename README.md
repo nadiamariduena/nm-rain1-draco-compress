@@ -53,7 +53,7 @@ export default RainTest1;
 
 # BUILDING THE SCENE 🌈
 
-#### But Before what is Frustum?
+#### But Before, what is Frustum?
 
 [<img src="./src/images/indignant-girl-meme.gif" style="width:120px;"/>]()
 
@@ -945,3 +945,5 @@ class TropicalVoid extends Component {
 
 export default TropicalVoid;
 ```
+
+[<img src="./src/images/fog-readme.gif"/>]()

@@ -1,9 +1,7 @@
 import React from "react";
 
-import Header from "../navigation/Header";
 import RainTest1 from "../3dScenes/RainTest1";
-// import HomePortfolioGallery from "./HomePortfolioGallery";
-import ContactSection from "./HomeContact";
+
 // import FooterTextAnimation from "./HomeFooterText";
 
 //
@@ -14,7 +12,7 @@ function Home() {
       {/* --------------- */}
       {/* --------------- */}
       {/* --------------- */}
-      <Header />
+
       {/* --------------- */}
       {/* --------------- */}
       {/* --------------- */}
@@ -34,10 +32,7 @@ function Home() {
             <div className="scene-description-home">
               <div className="wrapper-scene-description-home">
                 <h3 className="h3-text-img-home">Featured work</h3>
-                <p>
-                  Website for Meyoko's artworks, I created during my time at
-                  DCI. Additional illustration by Meyoko
-                </p>
+                <p>"Threejs tests" I created during my time at DCI.</p>
               </div>
             </div>
             {/* ----------------------------------------- */}
@@ -64,7 +59,7 @@ function Home() {
       {/* ----------------------------------------- */}
       {/*             CONTACT SECTION               */}
       {/* ----------------------------------------- */}
-      <ContactSection />
+
       {/* --------------- */}
       {/* <FooterTextAnimation /> */}
     </React.Fragment>
