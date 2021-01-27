@@ -70,11 +70,16 @@ class TropicalVoid extends Component {
     this.camera.rotation.z = -0.27;
     //
     //
-
+    this.renderer = new THREE.WebGL1Renderer();
+    // ------------------
+    // f     FOG
+    // ------------------
+    //
+    this.scene.fog = new THREE.FogExp2(0x1c1c2a, 0.002);
+    this.renderer.setClearColor(this.scene.fog.color);
     //
     //
     // this.controls = new OrbitControls(this.camera, this.eleModelBlOne);
-    this.renderer = new THREE.WebGL1Renderer();
     this.renderer.setSize(width, height);
     this.eleModelBlOne.appendChild(this.renderer.domElement); // mount using React ref
   };
@@ -82,13 +87,11 @@ class TropicalVoid extends Component {
   /*
 
  
-Traverse functions
+  
 
-It is basically the iterator through your loaded object. 
-You can pass the function to the traverse() function which 
-will be called for every child of the object being traversed. 
-If you call traverse() on scene. you traverse through 
-the complete scene graph.
+
+
+
 
   */
   // 2
@@ -96,25 +99,21 @@ the complete scene graph.
     //
     //-------- 1* cloudParticles
     this.cloudParticles = [];
-    //---------
 
-    //
     // ------------------
     //      LIGHTS
     // ------------------
     //
-    //
-    //
     // This light will illuminate all objects of the scene, from all the directions
     const ambient = new THREE.AmbientLight(0x555555);
     this.scene.add(ambient);
+    //
     //
     // This light will represent a MOONlight in the sky
     const directionalLight = new THREE.DirectionalLight(0xffeedd); //0x  then the hex color ,ex: ffffff for white
     directionalLight.position.set(0, 0, 0); // it means that it stands totally at the center
     this.scene.add(directionalLight);
     //
-
     // ----------------
     //   FLASH Lights
     // ---------------
@@ -124,19 +123,12 @@ the complete scene graph.
     this.flash.position.set(200, 300, 100);
     // and added it to the scene
     this.scene.add(this.flash);
-
     //
     //
     // ------------------
-    // a     RAIN
+    // a     RAIN  ***
     // ------------------
     //
-    // let rain,
-    //   rainGeo,
-    //   rainCount = 15000;
-    //
-    //
-
     this.rainCount = 15000;
 
     //
@@ -156,11 +148,10 @@ the complete scene graph.
       // e     rainAnimation
       // --------------------
       // Here you will add Velocity property to each raindrop
-      // then in the animate function, we will move each drop and increase the,
-      // the velocity to simulate the gravity, also reset the position
 
       this.rainDrop.velocity = {};
       this.rainDrop.velocity = 0;
+      //
       this.rainGeo.vertices.push(this.rainDrop);
     }
 
@@ -183,12 +174,8 @@ the complete scene graph.
     this.scene.add(this.rain);
     //
     //
-    //
-    //
-    //
-    //
     // ---------------------------
-    //       Texture Loader
+    //  ***  Texture Loader   ***
     // ---------------------------
     //
     //
@@ -198,8 +185,6 @@ the complete scene graph.
     loader.load("./images/smoke-1.png", (texture) => {
       this.meshyAnimationVar = texture.scene;
       //
-      //
-
       this.cloudGeo = new THREE.PlaneBufferGeometry(500, 500);
       this.cloudMaterial = new THREE.MeshLambertMaterial({
         map: texture,
@@ -225,18 +210,23 @@ the complete scene graph.
         this.cloudParticles.push(this.cloud);
         //-------------------
         //
-        //
-        //
         this.scene.add(this.cloud);
       }
+      //
       this.scene.add(texture.scene);
     });
     //
     //
-    // *** end
+    //
   };
 
   /*
+
+
+
+
+
+
 
 
 
@@ -252,9 +242,14 @@ the complete scene graph.
       p.rotation.z -= 0.002;
     });
     // --------------------   ****** rainAnimation LOOP
+    //s then in the animate function, we will move each drop and increase the,
+    // the velocity to simulate the gravity, also reset the position
     //
     this.rainGeo.vertices.forEach((p) => {
+      //
+      // also reset the position if they are outside the screen
       p.velocity -= 0.1 + Math.random() * 0.1;
+
       p.y += p.velocity;
       if (p.y < -200) {
         p.y = 200;
@@ -263,6 +258,9 @@ the complete scene graph.
     });
     this.rainGeo.verticesNeedUpdate = true;
     // --------------------   ****** rainAnimation LOOP
+    //   FOG
+    // This rotation here will serve to add some sort of cinematic effect
+    this.rain.rotation.y += 0.002;
     //
     //
     //
@@ -290,24 +288,22 @@ the complete scene graph.
 
 
 
+
   */
   handleWindowResize = () => {
     const width = this.eleModelBlOne.clientWidth;
     const height = this.eleModelBlOne.clientHeight;
-
-    //
-    //
     // updated renderer
     this.renderer.setSize(width, height);
     //
     // updated **camera** aspect ratio
     this.camera.aspect = width / height;
-    //
-    //
     // That is the Three.js optimization: you can group multiple camera changes into a block with only one
     this.camera.updateProjectionMatrix();
   };
+
   /*
+
 
 
 

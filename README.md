@@ -558,3 +558,19 @@ startAnimationLoop = () => {
 ```
 
 [<img src="./src/images/purplerain_progress_animation.gif"/>]()
+
+<br>
+<br>
+<br>
+
+# ☁️ ☁️ ☁️
+
+### FOG
+
+- THE FOG isn't necessary but just by curiosity I will add it
+
+- I am not too much into Fog in the scene because when i use the models it blocks my computer
+
+```javascript
+
+```
