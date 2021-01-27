@@ -133,7 +133,7 @@ class TropicalVoid extends Component {
 
     //
     // ------------------
-    // b     RAIN
+    // b     Rain
     // ------------------
     //
     this.rainGeo = new THREE.Geometry();
