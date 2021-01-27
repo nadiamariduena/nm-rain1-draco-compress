@@ -451,4 +451,42 @@ startAnimationLoop = () => {
 
 [<img src="./src/images/rotation-animation1_basic-setup.gif"/>]()
 
-rotation-animation1_basic-setup.gif
+<br>
+<br>
+<br>
+
+# 🚀 🚀 🚀
+
+<br>
+
+### FLASHLIGHTS
+
+- 1 Set up a **point Light with Blue Color**
+
+- 2 You will **position it BEHIND a cloud**
+
+- 3 And **add it to the Scene**
+
+```javascript
+// ----------------
+//   FLASH Lights
+// ---------------
+// add a bluelight 0x062d89 or red ff0000 or purple b600c7
+this.flash = new THREE.PointLight(0xb600c7, 30, 500, 1.7);
+//  You will position it BEHIND a cloud
+this.flash.position.set(200, 300, 100);
+// and added it to the scene
+this.scene.add(this.flash);
+```
+
+##### RESULT
+
+[<img src="./src/images/rotation-animation2_basic-setup.gif"/>]()
+
+<br>
+<br>
+<br>
+
+### 🔥🔥🔥
+
+## ANIMATE the FlashLight

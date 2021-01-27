@@ -7,8 +7,6 @@ const style = {
   height: 600, // we can control scene size by setting container dimensions
 };
 //
-// the cloud animation related (not the cloud alone)
-// let cloudParticles = [];
 
 //
 //
@@ -56,21 +54,17 @@ class TropicalVoid extends Component {
     // using current viewport aspect ratio ( window.innerWidth / window.innerHeight),
     // 1, near plane
     //   1000 unit viewing frustum
-    /*
-    
-    In geometry, a frustum (plural: frusta or frustums) is the portion of a solid (normally 
-        a cone or pyramid) that lies between one or two parallel 
-    planes cutting it. A right frustum is a parallel truncation of a 
-    right pyramid or right cone.
-    
-    https://www.geeksforgeeks.org/program-for-volume-and-surface-area-of-frustum-of-cone/
-    */
+    //  https://www.geeksforgeeks.org/program-for-volume-and-surface-area-of-frustum-of-cone/
+
     //
-    //----------------
+    //
+    //
+    //----------------                  --------------
     // Set the rotation camera looking UP to the sky
+    //----------------                  --------------
     //
     this.camera.position.z = 1;
-    //
+    //rotation
     this.camera.rotation.x = 1.16;
     this.camera.rotation.y = -0.12;
     this.camera.rotation.z = -0.27;
@@ -80,7 +74,6 @@ class TropicalVoid extends Component {
     //
     //
     // this.controls = new OrbitControls(this.camera, this.eleModelBlOne);
-    //
     this.renderer = new THREE.WebGL1Renderer();
     this.renderer.setSize(width, height);
     this.eleModelBlOne.appendChild(this.renderer.domElement); // mount using React ref
@@ -89,7 +82,7 @@ class TropicalVoid extends Component {
   /*
 
  
-
+Traverse functions
 
 It is basically the iterator through your loaded object. 
 You can pass the function to the traverse() function which 
@@ -100,12 +93,51 @@ the complete scene graph.
   */
   // 2
   addCustomSceneObjects = () => {
+    //
+    //-------- 1* cloudParticles
     this.cloudParticles = [];
+    //---------
+    //
+
+    // ------------------
+    //      LIGHTS
+    // ------------------
+    //
+    //
+    //
+    // This light will illuminate all objects of the scene, from all the directions
+    const ambient = new THREE.AmbientLight(0x555555);
+    this.scene.add(ambient);
+    //
+    // This light will represent a MOONlight in the sky
+    const directionalLight = new THREE.DirectionalLight(0xffeedd); //0x  then the hex color ,ex: ffffff for white
+    directionalLight.position.set(0, 0, 0); // it means that it stands totally at the center
+    this.scene.add(directionalLight);
+    //
+
+    // ----------------
+    //   FLASH Lights
+    // ---------------
+    // add a bluelight 0x062d89 or red ff0000 or purple b600c7
+    this.flash = new THREE.PointLight(0xb600c7, 30, 500, 1.7);
+    //  You will position it BEHIND a cloud
+    this.flash.position.set(200, 300, 100);
+    // and added it to the scene
+    this.scene.add(this.flash);
+
+    //
+    //
+    //
+    //
+    // ---------------------------
+    //       Texture Loader
+    // ---------------------------
     //
     //
     //
     let loader = new THREE.TextureLoader();
-    loader.load("./images/img-cloud2.png", (texture) => {
+    // You can change the image of the cloud and have a different outcome everytime you do it
+    loader.load("./images/smoke-1.png", (texture) => {
       this.meshyAnimationVar = texture.scene;
       //
       //
@@ -130,29 +162,20 @@ the complete scene graph.
         this.cloud.rotation.y = -0.12;
         this.cloud.rotation.z = Math.random() * 360;
         this.cloud.material.opacity = 0.6;
+        // ------------------  2* cloudParticles
+        // the cloud Particles
         this.cloudParticles.push(this.cloud);
+        //-------------------
         this.scene.add(this.cloud);
       }
 
       this.scene.add(texture.scene);
     });
-
-    // ------------------
-    //      LIGHTS
-    // ------------------
     //
     //
-    // 1
-    // This light will illuminate all objects of the scene, from all the directions
-    const ambient = new THREE.AmbientLight(0x555555);
-    this.scene.add(ambient);
-    //
-    // This light will represent a MOONlight in the sky
-    const directionalLight = new THREE.DirectionalLight(0xffeedd); //0x  then the hex color ,ex: ffffff for white
-    directionalLight.position.set(0, 0, 0); // it means that it stands totally at the center
-    this.scene.add(directionalLight);
-    //
+    // *** end
   };
+
   /*
 
 
@@ -163,9 +186,12 @@ the complete scene graph.
   */
   // 3
   startAnimationLoop = () => {
+    // ------------------  3* cloudParticles
+    // the cloud Particles
     this.cloudParticles.forEach((p) => {
       p.rotation.z -= 0.002;
     });
+    // ------------------
 
     // this.cube.rotation.x += 0.01;
     // this.cube.rotation.y += 0.01;
