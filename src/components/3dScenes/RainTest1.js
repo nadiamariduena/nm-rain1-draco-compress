@@ -151,32 +151,39 @@ the complete scene graph.
         Math.random() * 500 - 250,
         Math.random() * 400 - 200
       );
+      //
+      // --------------------
+      // e     rainAnimation
+      // --------------------
+      // Here you will add Velocity property to each raindrop
+      // then in the animate function, we will move each drop and increase the,
+      // the velocity to simulate the gravity, also reset the position
+
+      this.rainDrop.velocity = {};
+      this.rainDrop.velocity = 0;
       this.rainGeo.vertices.push(this.rainDrop);
     }
-    //
+
     // ------------------
     // c     CREATE Rain Material
     // ------------------
     //
     this.rainMaterial = new THREE.PointsMaterial({
       color: 0xaaaaaa,
-      size: 0.1,
+      size: 0.3,
       transparent: true,
     });
     //
     // ------------------
     // d     CREATE Rain Object
     // ------------------
-    //
-    this.rainMaterial = new THREE.PointsMaterial({
-      color: 0xaaaaaa,
-      size: 0.1,
-      transparent: true,
-    });
-    //
+
     //
     this.rain = new THREE.Points(this.rainGeo, this.rainMaterial);
     this.scene.add(this.rain);
+    //
+    //
+    //
     //
     //
     //
@@ -217,9 +224,11 @@ the complete scene graph.
         // the cloud Particles
         this.cloudParticles.push(this.cloud);
         //-------------------
+        //
+        //
+        //
         this.scene.add(this.cloud);
       }
-
       this.scene.add(texture.scene);
     });
     //
@@ -242,11 +251,20 @@ the complete scene graph.
     this.cloudParticles.forEach((p) => {
       p.rotation.z -= 0.002;
     });
-    // ------------------
-
-    // this.cube.rotation.x += 0.01;
-    // this.cube.rotation.y += 0.01;
-
+    // --------------------   ****** rainAnimation LOOP
+    //
+    this.rainGeo.vertices.forEach((p) => {
+      p.velocity -= 0.1 + Math.random() * 0.1;
+      p.y += p.velocity;
+      if (p.y < -200) {
+        p.y = 200;
+        p.velocity = 0;
+      }
+    });
+    this.rainGeo.verticesNeedUpdate = true;
+    // --------------------   ****** rainAnimation LOOP
+    //
+    //
     //
     // -----------------------
     // ANIMATE the FlashLight

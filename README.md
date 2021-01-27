@@ -234,6 +234,10 @@ export default TropicalVoid;
 
 - Lets get rid of the Orbitscontrol so to have a better view of the process
 
+- Also **Just read the code** to familiarize with it, then check the last code at the bottom of the page.
+
+<br>
+
 [<img src="./src/images/with-and-without-orbitControls.gif"/>]()
 
 <br>
@@ -443,21 +447,16 @@ if (Math.random() > 0.93 || this.flash.power > 100) {
 ```javascript
 //
 //
+//
 // ------------------
 // a     RAIN
 // ------------------
 //
-// let rain,
-//   rainGeo,
-//   rainCount = 15000;
-//
-//
-
 this.rainCount = 15000;
 
 //
 // ------------------
-// b     RAIN
+// b     RAIN drops
 // ------------------
 //
 this.rainGeo = new THREE.Geometry();
@@ -483,18 +482,79 @@ this.rainMaterial = new THREE.PointsMaterial({
 // ------------------
 // d     CREATE Rain Object
 // ------------------
-//
-this.rainMaterial = new THREE.PointsMaterial({
-  color: 0xaaaaaa,
-  size: 0.1,
-  transparent: true,
-});
-//
+
 //
 this.rain = new THREE.Points(this.rainGeo, this.rainMaterial);
 this.scene.add(this.rain);
 //
 //
+//
 ```
 
+#### The particles are there but you must to zoom on the images or change the setting in the rain Material from 0.01 to 1 (just to test)
+
 [<img src="./src/images/rain_particles_noanimation.jpg"/>]()
+
+<br>
+<br>
+<br>
+
+# 🦄
+
+## ANIMATE THE RAIN
+
+#### Add the rain Animation (first step ) _**inside the LOOP**_
+
+<br>
+
+- **Here you will add Velocity** property **to each** raindrop
+
+- **then in the animate function**, we will move each drop and increase the,
+
+- the **velocity to simulate the gravity**, also reset the position
+
+```javascript
+// ------------------
+// b     RAIN
+// ------------------
+//
+// this.rainGeo = new THREE.Geometry();
+for (let i = 0; i < this.rainCount; i++) {
+  //   this.rainDrop = new THREE.Vector3(
+  //     Math.random() * 400 - 200,
+  //     Math.random() * 500 - 250,
+  //     Math.random() * 400 - 200
+  //   );
+  //   //
+  // --------------------
+  // e     rainAnimation
+  // --------------------
+  // Here you will add Velocity property to each raindrop
+  // then in the animate function, we will move each drop and increase the,
+  // the velocity to simulate the gravity, also reset the position
+
+  this.rainDrop.velocity = {}; //add this
+  this.rainDrop.velocity = 0; // and this
+  //
+  this.rainGeo.vertices.push(this.rainDrop);
+}
+```
+
+#### the **velocity to simulate the gravity**, also reset the position
+
+```javascript
+startAnimationLoop = () => {
+  //
+  this.rainGeo.vertices.forEach((p) => {
+    p.velocity -= 0.1 + Math.random() * 0.1;
+    p.y += p.velocity;
+    if (p.y < -200) {
+      p.y = 200;
+      p.velocity = 0;
+    }
+  });
+  this.rainGeo.verticesNeedUpdate = true;
+};
+```
+
+[<img src="./src/images/purplerain_progress_animation.gif"/>]()
