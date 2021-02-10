@@ -130,16 +130,19 @@ class TropicalVoid extends Component {
     // ------------------
     //
     this.rainCount = 15000;
-
-    //
+    // b
     // ------------------
-    // b     Rain
-    // ------------------
-    //
+    //https://youtu.be/KkyIDI6rQJI
+    // https://youtu.be/1bkibGIG8i0
     this.rainGeo = new THREE.Geometry();
+    // Here you will loop on the 15000 drops, so the entire length of the array
     for (let i = 0; i < this.rainCount; i++) {
+      // here you clarify that you want make 15000 NEW drops in that array
       this.rainDrop = new THREE.Vector3(
-        Math.random() * 400 - 200,
+        // if you don't add a "Math random" for the drop,
+        // it will show the 15000 drops, as a single rain drop, and that is because they are all in
+        // the same position, thats why you need to give a "random position" for each one of them
+        Math.random() * 400 - 200, //- or negative 200 is like in css. hidden on top -200 of the screen
         Math.random() * 500 - 250,
         Math.random() * 400 - 200
       );
@@ -147,11 +150,13 @@ class TropicalVoid extends Component {
       // --------------------
       // e     rainAnimation
       // --------------------
-      // Here you will add Velocity property to each raindrop
-
+      // Here you will add Velocity property to each raindrop.
+      // this 2 lines are connected to the lopp animation on the bottom.
+      // Its adding velocity to Each rain drop.
       this.rainDrop.velocity = {};
       this.rainDrop.velocity = 0;
       //
+      // with push , you will add a vertex to the geometry
       this.rainGeo.vertices.push(this.rainDrop);
     }
 
@@ -204,7 +209,7 @@ class TropicalVoid extends Component {
         this.cloud.rotation.x = 1.16;
         this.cloud.rotation.y = -0.12;
         this.cloud.rotation.z = Math.random() * 360;
-        this.cloud.material.opacity = 0.6;
+        this.cloud.material.opacity = 0.2;
         // ------------------  2* cloudParticles
         // the cloud Particles
         this.cloudParticles.push(this.cloud);
@@ -243,14 +248,14 @@ class TropicalVoid extends Component {
     });
     // --------------------   ****** rainAnimation LOOP
     //s then in the animate function, we will move each drop and increase the,
-    // the velocity to simulate the gravity, also reset the position
-    //
+    // the velocity to simulate the gravity.
     this.rainGeo.vertices.forEach((p) => {
-      //
-      // also reset the position if they are outside the screen
+      // also reset the position if they are outside the screen,
+      // like when they reach the bottom ,
       p.velocity -= 0.1 + Math.random() * 0.1;
 
       p.y += p.velocity;
+      // it will reset the position to the top -100 like in css for example
       if (p.y < -200) {
         p.y = 200;
         p.velocity = 0;
